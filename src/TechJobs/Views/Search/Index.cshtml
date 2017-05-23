@@ -48,17 +48,6 @@
 
     // TODO #2 - Loop over jobs dictionary and display all job fields
     
-    @foreach (Dictionary<string, string> job in ViewBag.jobs)
-    {
-        <table class="job-listing">
-        @foreach (KeyValuePair<string, string> detail in job)
-            {
-            <tr>
-                <td>@detail.Key</td>
-                <td>@detail.Value</td>
-            </tr>
-            }
-        </table>
-    }
-    
+    @Html.Partial("JobList")
+
 }
