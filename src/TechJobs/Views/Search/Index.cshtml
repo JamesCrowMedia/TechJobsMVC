@@ -1,4 +1,8 @@
-﻿<h1>@ViewBag.title</h1>
+﻿@{
+    ViewBag.isChecked = null;
+}
+
+<h1>@ViewBag.title</h1>
 
 <form action="/Search/Results">
     <h2>Search by:</h2>
@@ -6,12 +10,22 @@
     <p>
         @foreach (KeyValuePair<string, string> column in ViewBag.columns)
         {
+            @if (@column.Key == ViewBag.searchType)
+            {
+                ViewBag.isChecked = "checked";
+
+            }
+            else
+            {
+                ViewBag.isChecked = null;
+            }
+
             <span>
                 <input type="radio"
                        name="searchType"
                        id="@column.Key"
-                       value="@column.Key" 
-                       checked="@column.Key == 'all''"/>
+                       value="@column.Key"
+                       checked="@ViewBag.isChecked" />
                 <label for="@column.Key">@column.Value</label>
             </span>
         }
@@ -19,7 +33,7 @@
 
     <p>
         <label for="searchTerm">Keyword:</label>
-        <input type="text" name="searchTerm" id="searchTerm" />
+        <input type="text" name="searchTerm" id="searchTerm" value="@ViewBag.searchTerm" />
     </p>
 
     <input type="submit" value="Search" />

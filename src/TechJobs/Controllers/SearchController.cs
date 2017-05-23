@@ -25,6 +25,8 @@ namespace TechJobs.Controllers
             ViewBag.columns = ListController.columnChoices;
             ViewBag.title = "Search Results";
             ViewBag.jobs = foundJobs;
+            ViewBag.searchTerm = searchTerm;
+            ViewBag.searchType = searchType;
 
             return View("Index");
         }
